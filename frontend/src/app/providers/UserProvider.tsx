@@ -15,7 +15,6 @@ function UserProvider({ children }: Readonly<{ children: React.ReactNode }>) {
   const { setUser } = useUserStore();
   useEffect(() => {
     if (query.data?.data?.user) {
-      console.log(query.data?.data?.user);
       setUser(query.data?.data?.user);
     }
   }, [query.data?.data?.user, setUser]);

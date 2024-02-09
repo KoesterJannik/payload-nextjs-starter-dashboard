@@ -9,11 +9,6 @@ function Page() {
   return (
     <div>
       <h1>Hello,{user?.email}</h1>
-      <img
-        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${user?.profileImage?.url}`}
-        alt="ahoi matrose"
-      />
-      <pre>{JSON.stringify(user, null, 2)}</pre>
 
       <ProfileUploader />
     </div>

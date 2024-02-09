@@ -58,6 +58,7 @@ const Media: CollectionConfig = {
           const profileImage = req.query.profileImage ?? false;
           if (profileImage) {
             if (req.user.profileImage) {
+              // todo delete old image
               console.log(
                 "User already has a profile image,delete the old one"
               );

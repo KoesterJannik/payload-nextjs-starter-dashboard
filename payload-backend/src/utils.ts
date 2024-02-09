@@ -13,7 +13,6 @@ export const selfOrAdminID: Access = ({ req: { user } }) => {
 };
 
 export const ownProfileImageOrAdmin: Access = ({ req: { user } }) => {
-  console.log(user);
   if (user?.role === "admin") {
     return true;
   }
@@ -26,7 +25,6 @@ export const ownProfileImageOrAdmin: Access = ({ req: { user } }) => {
 
 export const registerWithoutRoleOrAdmin: Access = ({ req: { user } }) => {
   if (user?.role === "admin") {
-    console.log("is admin");
     return true;
   }
   return {
