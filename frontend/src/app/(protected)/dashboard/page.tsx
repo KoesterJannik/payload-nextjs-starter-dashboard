@@ -1,0 +1,23 @@
+"use client";
+
+import ProfileUploader from "../../../components/dashboard/ProfileUpload";
+import { useUserStore } from "../../../stores/userStore";
+
+function Page() {
+  const { user } = useUserStore();
+
+  return (
+    <div>
+      <h1>Hello,{user?.email}</h1>
+      <img
+        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${user?.profileImage?.url}`}
+        alt="ahoi matrose"
+      />
+      <pre>{JSON.stringify(user, null, 2)}</pre>
+
+      <ProfileUploader />
+    </div>
+  );
+}
+
+export default Page;
