@@ -1,1 +1,0 @@
-TODOS LÖSCHEN, Bild löschen
