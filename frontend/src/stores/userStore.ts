@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 interface UserState {
   user: {
+    id: string;
     email: string;
     role: string;
     profileImage: {
@@ -10,6 +11,7 @@ interface UserState {
   };
   setUser: (user: {
     email: string;
+    id: string;
     role: string;
     profileImage: {
       url: string;
@@ -18,6 +20,6 @@ interface UserState {
 }
 
 export const useUserStore = create<UserState>((set) => ({
-  user: { email: "", role: "", profileImage: { url: "" } },
+  user: { id: "", email: "", role: "", profileImage: { url: "" } },
   setUser: (user) => set({ user }),
 }));

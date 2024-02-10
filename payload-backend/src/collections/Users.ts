@@ -1,7 +1,8 @@
-import { CollectionConfig } from "payload/types";
+import { CollectionBeforeChangeHook, CollectionConfig } from "payload/types";
 import {
   adminOnly,
   isAdminFieldLevel,
+  preventEmailChange,
   registerWithoutRoleOrAdmin,
   selfOrAdminID,
 } from "../utils";
@@ -36,6 +37,9 @@ const Users: CollectionConfig = {
       hasMany: false,
     },
   ],
+  hooks: {
+    beforeChange: [preventEmailChange],
+  },
 };
 
 export default Users;

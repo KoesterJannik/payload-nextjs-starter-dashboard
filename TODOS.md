@@ -1,1 +1,1 @@
-TODOS LÖSCHEN, Bild löschen, register darf nicht admin role mitschicken dürfen, passwort ändern
+TODOS LÖSCHEN, Bild löschen

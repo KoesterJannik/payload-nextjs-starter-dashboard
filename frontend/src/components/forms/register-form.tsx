@@ -28,14 +28,19 @@ const formSchema = z.object({
   password: z.string().min(2, {
     message: "Password must be at least 2 characters.",
   }),
+  role: z.string().min(2, {
+    message: "Password must be at least 2 characters.",
+  }),
 });
 
 async function registerUser({
   email,
   password,
+  role,
 }: {
   email: string;
   password: string;
+  role: string;
 }) {
   const URL = process.env.NEXT_PUBLIC_BACKEND_URL;
   return axios.post(`${URL}/api/users`, { email, password });
@@ -44,9 +49,11 @@ async function registerUser({
 async function loginUser({
   email,
   password,
+  role,
 }: {
   email: string;
   password: string;
+  role: string;
 }) {
   const URL = process.env.NEXT_PUBLIC_BACKEND_URL;
   return axios.post(`${URL}/api/users/login`, { email, password });
@@ -59,6 +66,7 @@ export function RegisterForm() {
     defaultValues: {
       email: "",
       password: "",
+      role: "admin",
     },
   });
   const mutation = useMutation({

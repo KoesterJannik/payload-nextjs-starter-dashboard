@@ -1,5 +1,6 @@
 import { Access } from "payload/config";
-import { FieldAccess } from "payload/types";
+import { CollectionBeforeChangeHook, FieldAccess } from "payload/types";
+import { ValidationError } from "payload/errors";
 
 export const selfOrAdminID: Access = ({ req: { user } }) => {
   if (user?.role === "admin") {
@@ -23,6 +24,24 @@ export const ownProfileImageOrAdmin: Access = ({ req: { user } }) => {
   };
 };
 
+export const preventEmailChange: CollectionBeforeChangeHook = async ({
+  data, // incoming data to update or create with
+  operation, // name of the operation ie. 'create', 'update'
+  originalDoc, // original document
+}) => {
+  if (operation === "update") {
+    const triedToChangeEmail = data.email && data.email !== originalDoc.email;
+    if (triedToChangeEmail) {
+      const result = {
+        field: "email",
+        message: "You cannot change your email",
+      };
+      throw new ValidationError([result]);
+    }
+  }
+
+  return data;
+};
 export const registerWithoutRoleOrAdmin: Access = ({ req: { user } }) => {
   if (user?.role === "admin") {
     return true;
